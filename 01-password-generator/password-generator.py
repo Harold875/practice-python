@@ -27,9 +27,9 @@ def generate_password(length, nums, special_chars, uppercase, lowercase):
             constraint <= len(re.findall(pattern, password))
             for constraint, pattern in constraints
         ):
-            pass
+            break
                             
     return password
 
-# new_password = generate_password(8)
-# print(new_password)
+new_password = generate_password(length=8, nums=1, special_chars=1, uppercase=1, lowercase=1)
+print(new_password)
