@@ -5,5 +5,6 @@ copper = {
 copper['food'] = 'hay'
 copper['species'] = 'Cavia porcellus'
 
+del copper['age']
 for i, j in copper.items():
     print(i, j)
