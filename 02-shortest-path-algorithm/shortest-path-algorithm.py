@@ -1,18 +1,22 @@
-# my_graph = {
-#     'A': [('B', 3), ('D', 1)],
-#     'B': [('A', 3), ('C', 4)],
-#     'C': [('B', 4), ('D', 7)],
-#     'D': [('A', 1), ('C', 7)]
-# }
+my_graph = {
+    'A': [('B', 3), ('D', 1)],
+    'B': [('A', 3), ('C', 4)],
+    'C': [('B', 4), ('D', 7)],
+    'D': [('A', 1), ('C', 7)]
+}
 
 my_graph = {
-    'A': [('B', 5), ('C', 3), ('E', 11)],
-    'B': [('A', 5), ('C', 1), ('F', 2)],
-    'C': [('A', 3), ('B', 1), ('D', 1), ('E', 5)],
-    'D': [('C', 1), ('E', 9), ('F', 3)],
-    'E': [('A', 11), ('C', 5), ('D', 9)],
-    'F': [('B', 2), ('D', 3)]
+    'A':  [('X', 4)],
+    'X': [('Y', 2), ('Z', 3), ('A', 4)],
 }
+# my_graph = {
+#     'A': [('B', 5), ('C', 3), ('E', 11)],
+#     'B': [('A', 5), ('C', 1), ('F', 2)],
+#     'C': [('A', 3), ('B', 1), ('D', 1), ('E', 5)],
+#     'D': [('C', 1), ('E', 9), ('F', 3)],
+#     'E': [('A', 11), ('C', 5), ('D', 9)],
+#     'F': [('B', 2), ('D', 3)]
+# }
 
 def shortest_path(graph, start, target=""):
     unvisited = list(graph)
@@ -21,8 +25,16 @@ def shortest_path(graph, start, target=""):
     paths[start].append(start)
     while unvisited:
         current = min(unvisited,key=distances.get)
+        if distances[current] == float('inf'):
+            paths[current].append("No hay ruta disponible")
+            unvisited.remove(current)
+            continue
         for node, distance in graph[current]:
-            if distance + distances[current] < distances[node] :
+            if node not in distances:
+                distances[node] = float('inf')
+                paths[node] = []
+           
+            if distance + distances[current] < distances[node]:
                 distances[node] = distance + distances[current]
                 if paths[node] and paths[node][-1] == node:
                     paths[node] = paths[current][:]
@@ -39,5 +51,6 @@ def shortest_path(graph, start, target=""):
         print(f'\n{start}-{node} distance: {distances[node]}\nPath: {" -> ".join(paths[node])}')
     
     return distances, paths
-        
-shortest_path(my_graph, 'A', "F")
+
+if __name__ == "__main__":
+    shortest_path(my_graph, 'A',)
