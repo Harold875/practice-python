@@ -5,6 +5,7 @@ rods = {
     "B": [],
     "C": [],
 }
+
 def make_allowed_move(rod1, rod2):
     forward = False
     if not rods[rod2]:
@@ -19,11 +20,12 @@ def make_allowed_move(rod1, rod2):
         rods[rod1].append(rods[rod2].pop())
     
     # display our progress
-    print(rods)
+    print(rods,"\n")
 
 
 def move(n, source, auxiliary, target):
     # display starting configuration
+    print(rods,"\n")
     for i in range(number_of_moves):
         remainder = (i + 1) % 3
         if remainder == 1:
@@ -31,8 +33,10 @@ def move(n, source, auxiliary, target):
             make_allowed_move(source, target)    
         elif remainder == 2:
             print(f'Move {i + 1} allowed between {source} and {auxiliary}')
+            make_allowed_move(source, auxiliary)    
         elif remainder == 0:
             print(f'Move {i + 1} allowed between {auxiliary} and {target}')
+            make_allowed_move(auxiliary, target)    
             
             
 
