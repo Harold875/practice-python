@@ -33,8 +33,8 @@ class Tests(unittest.TestCase):
         _,paths = shortest_path(graph_01, "A")
         path_expected = ["A","B", "C"]
         self.assertEqual(paths["C"], path_expected)
-    
-        
+
+
     def test_paths_graph_01_d_to_b(self):
         """
         check paths "B" is Equal to ["D","A","B"]
@@ -62,8 +62,8 @@ class Tests(unittest.TestCase):
         _,paths = shortest_path(graph_02, "F", "E")
         path_expected = ["F","B", "C", "E"]
         self.assertEqual(paths["E"], path_expected)
-    
-    
+
+
     def test_distance_graph_01_a_to_d(self):
         """
         check distances "A" to "D" is Equal to 1
@@ -71,8 +71,8 @@ class Tests(unittest.TestCase):
         distances, _ = shortest_path(graph_01, "A", "D")
         distance_expected = 1
         self.assertEqual(distances["D"], distance_expected)
-        
-    
+
+
     def test_distance_graph_01_b_to_d(self):
         """
         check distances "B" to "D" is Equal to 4
@@ -80,8 +80,8 @@ class Tests(unittest.TestCase):
         distances, _ = shortest_path(graph_01, "B")
         distance_expected = 4
         self.assertEqual(distances["D"], distance_expected)
-    
-    
+
+
     def test_distances_graph_02_a_to_c(self):
         """
         check distances "A" to "C" is Equal to 3
@@ -89,8 +89,8 @@ class Tests(unittest.TestCase):
         distances, _ = shortest_path(graph_02, "A", "C")
         distance_expected = 3
         self.assertEqual(distances["C"], distance_expected)
-        
-        
+
+ 
     def test_distances_graph_02_a_to_f(self):
         """
         check distances "A" to "F" is Equal to 7
@@ -98,8 +98,8 @@ class Tests(unittest.TestCase):
         distances, _ = shortest_path(graph_02, "A")
         distance_expected = 6
         self.assertEqual(distances["F"], distance_expected)
-    
-    
+
+
     def test_distances_graph_02_c_to_f(self):
         """
         check distances "C" to "F" is Equal to 7
@@ -107,8 +107,8 @@ class Tests(unittest.TestCase):
         distances, _ = shortest_path(graph_02, "C")
         distance_expected = 3
         self.assertEqual(distances["F"], distance_expected)
-    
-    
+
+
     def test_distances_and_path_graph_01_b_to_d(self):
         """
         check paths "B" to "D" is Equal to ["B","A","D"]
@@ -121,8 +121,8 @@ class Tests(unittest.TestCase):
         
         self.assertEqual(paths["D"], path_expected)
         self.assertEqual(distances["D"], distance_expected)
-    
-    
+
+
     def test_distances_and_path_graph_01_c_to_a(self):
         """
         check paths "C" to "A" is Equal to ["B","A","D"]
@@ -135,8 +135,8 @@ class Tests(unittest.TestCase):
         
         self.assertEqual(paths["A"], path_expected)
         self.assertEqual(distances["A"], distance_expected)
-    
-        
+
+
     def test_distances_and_path_graph_02_e_to_f(self):
         """
         check paths "E" to "F" is Equal to ["E","C","B","F"]
@@ -149,8 +149,8 @@ class Tests(unittest.TestCase):
         
         self.assertEqual(paths["F"], path_expected)
         self.assertEqual(distances["F"], distance_expected)
-    
-        
+
+
     def test_distances_and_path_graph_02_b_to_d(self):
         """
         check paths "B" to "D" is Equal to ["B","C", "D"]
@@ -163,8 +163,8 @@ class Tests(unittest.TestCase):
         
         self.assertEqual(paths["D"], path_expected)
         self.assertEqual(distances["D"], distance_expected)
-    
-    
+
+
     @patch('sys.stdout', new_callable=StringIO)
     def test_message_graph_01_a_to_d(self, mock_stdout):
         """
@@ -172,7 +172,7 @@ class Tests(unittest.TestCase):
         A-C distance: 1
         Path: A -> D
         """
-        # funcion
+        # function
         shortest_path(graph_01, "A", 'D')
         
         expected_output = '\nA-D distance: 1\nPath: A -> D\n'
@@ -186,13 +186,13 @@ class Tests(unittest.TestCase):
         A-C distance: 7
         Path: A -> B -> C
         """
-        # funcion
+        # function
         shortest_path(graph_01, "A", 'C')
         
         expected_output = '\nA-C distance: 7\nPath: A -> B -> C\n'
         self.assertEqual(mock_stdout.getvalue(), expected_output)
-    
-    
+
+
     @patch('sys.stdout', new_callable=StringIO)
     def test_message_graph_02_d_to_a(self, mock_stdout):
         """
@@ -200,7 +200,7 @@ class Tests(unittest.TestCase):
         A-C distance: 4
         Path: D -> C -> A
         """
-        # funcion
+        # function
         shortest_path(graph_02, "D", 'A')
         
         expected_output = '\nD-A distance: 4\nPath: D -> C -> A\n'
@@ -214,11 +214,40 @@ class Tests(unittest.TestCase):
         A-C distance: 8
         Path: F -> B -> C -> E
         """
-        # funcion
+        # function
         shortest_path(graph_02, "F", 'E')
         
         expected_output = '\nF-E distance: 8\nPath: F -> B -> C -> E\n'
         self.assertEqual(mock_stdout.getvalue(), expected_output)
-    
+
+
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_paths_different_graph_format(self, mock_stdout):      
+        """
+        check paths "A" to "X" is Equal to ["A","X"],
+        check distances "A" to "X" is Equal to 4,
+        Verify that the printed output for the shortest path from "A" to "X" is:
+            A-C distance: 4
+            Path: A -> X
+        """
+        graph_03 = {
+            'A':  [('X', 4)],
+            'X': [('Y', 2), ('Z', 3), ('A', 4)],
+        }
+        
+        # function
+        distances ,paths = shortest_path(graph_03, "A", 'X')
+        
+        # Expected outputs
+        path_expected = ["A","X"]
+        distance_expected = 4
+        expected_print_output = '\nA-X distance: 4\nPath: A -> X\n'
+        
+        # Verify expected results
+        self.assertEqual(paths["X"], path_expected)
+        self.assertEqual(distances["X"], distance_expected)
+        self.assertEqual(mock_stdout.getvalue(), expected_print_output)        
+
+
 if __name__ == "__main__":
     unittest.main()
