@@ -14,6 +14,10 @@ class Board():
     
     def valid_in_row(self, row, num):
         return num not in self.board[row]
+    
+    
+    def valid_in_col(self, col, num):
+       return all(self.board[row][col] != num for row in range(9))
 
 
 puzzle = [
@@ -29,4 +33,4 @@ puzzle = [
 ]
 
 gameboard = Board(puzzle)
-print(gameboard.valid_in_row(0, 8))
+print(gameboard.valid_in_col(0,7))
