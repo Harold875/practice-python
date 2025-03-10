@@ -10,6 +10,10 @@ class Board():
             except ValueError:
                 pass
         return None
+    
+    
+    def valid_in_row(self, row, num):
+        return num not in self.board[row]
 
 
 puzzle = [
@@ -25,4 +29,4 @@ puzzle = [
 ]
 
 gameboard = Board(puzzle)
-print(gameboard.find_empty_cell())
+print(gameboard.valid_in_row(0, 8))
