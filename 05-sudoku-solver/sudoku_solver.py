@@ -20,6 +20,15 @@ class Board():
        return all(self.board[row][col] != num for row in range(9))
 
 
+    def valid_in_square(self, row, col, num):
+        row_start = (row // 3) * 3
+        col_start = (col // 3) * 3
+        for row_no in range(row_start, row_start + 3):
+            for col_no in range(col_start, col_start + 3):
+                if self.board[row_no][col_no] == num:
+                    return False
+        return True
+
 puzzle = [
     [0, 0, 2, 0, 0, 8, 0, 0, 0],
     [0, 0, 0, 0, 0, 3, 7, 6, 2],
@@ -33,4 +42,5 @@ puzzle = [
 ]
 
 gameboard = Board(puzzle)
-print(gameboard.valid_in_col(0,7))
+print(gameboard.valid_in_square(1,0,3))     # Salida: False
+print(gameboard.valid_in_square(1,6,3))     # Salida: True
