@@ -2,6 +2,16 @@ class Board():
     def __init__(self, board):
         self.board = board
         
+    
+    def __str__(self):
+        board_str = ''
+        for row in self.board:
+            row_str = [str(i) if i else '*' for i in row]
+            board_str += ' '.join(row_str)
+            board_str += '\n'
+        return board_str
+        
+    
     def find_empty_cell(self):
         for row, contents in enumerate(self.board):
             try:
@@ -73,5 +83,3 @@ puzzle = [
     [1, 7, 0, 0, 0, 6, 0, 0, 5]
 ]
 
-gameboard = Board(puzzle)
-print(gameboard)
