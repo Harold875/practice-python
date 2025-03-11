@@ -5,6 +5,10 @@ class TreeNode():
         self.right = None
         
 
+    def __str__(self):
+        return str(self.key)
+       
+
 class BinarySearchTree():
     def __init__(self):
         self.root = None
