@@ -1,4 +1,6 @@
 text = 'Hello World'
-print(type(text))
 shift = 3
-print(type(shift))
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+index = alphabet.find(text[0])
+print(index)
+print(text.lower())
