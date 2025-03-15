@@ -1,7 +1,7 @@
 text = 'Hello Zaira'
 custom_key = 'python'
 
-def vigenere(message, key, direction):
+def vigenere(message, key, direction=1):
     key_index = 0
     alphabet = 'abcdefghijklmnopqrstuvwxyz'
     final_message = ''
@@ -23,7 +23,7 @@ def vigenere(message, key, direction):
             
     return final_message
     
-encryption = vigenere(text, custom_key, 1)
+encryption = vigenere(text, custom_key)
 decryption = vigenere(encryption, custom_key, -1)
 print(encryption)
 print(decryption)
