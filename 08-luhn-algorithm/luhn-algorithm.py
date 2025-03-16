@@ -1,10 +1,14 @@
 def verify_card_number(card_number):
     sum_of_odd_digits = 0
-    card_number_reversed = card_number[-1:-5:-1]
-    
     card_number_reversed = card_number[::-1]
     odd_digits = card_number_reversed[::2]
-    for i in odd_digits:
+    
+    for digit in odd_digits:
+        sum_of_odd_digits += int(digit)
+    print(sum_of_odd_digits)
+    sum_of_even_digits = 0
+    even_digits = card_number_reversed[1::2]
+    for i in even_digits:
         print(i)
     
     
