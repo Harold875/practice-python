@@ -1,4 +1,4 @@
-class Vector:
+class R2Vector:
     
     def __init__(self, x, y):
         self.x = x
@@ -12,6 +12,15 @@ class Vector:
         return (self.x**2 + self.y**2)**0.5
         
 
-v1 = Vector(2,3)
+class R3Vector(R2Vector):
+    
+    def __init__(self, x, y, z):
+        super().__init__(x, y)
+        self.z = z   
+
+
+v1 = R2Vector(2,3)
 print(v1.norm())
 print(v1)
+
+v2 = R3Vector(2,2,3)
