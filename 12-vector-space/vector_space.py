@@ -38,7 +38,10 @@ class R2Vector:
             return NotImplemented
         return all(getattr(self,i) == getattr(other,i) for i in vars(self))
             
-            
+    def __ne__(self, other):
+        return not self == other        
+                  
+     
     def norm(self):
         return (sum(val**2 for val in vars(self).values()))**0.5
         
@@ -69,3 +72,7 @@ v6 = v1 * v2
 print(f'v1 * 3 = {v5}')
 print(f'v1 * v2 = {v6}')
 # v5 = v1 * '(1, 3)'  # -> TypeError
+
+
+print(v1 == R2Vector(x=2, y=3))
+print(v1 != R2Vector(x=2, y=3))
