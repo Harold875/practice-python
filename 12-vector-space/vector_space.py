@@ -24,6 +24,16 @@ class R2Vector:
         kwargs = {i:getattr(self,i) - getattr(other,i) for i in vars(self)}
         return self.__class__(**kwargs)
     
+    def __mul__(self, other):
+        if type(other) in (int, float):
+            kwargs = { i:getattr(self, i) * other  for i in vars(self)}
+            return self.__class__(**kwargs)
+        elif type(self) == type(other):
+            args = [ getattr(self, i) * getattr(other,i) for i in vars(self)]
+            return sum(args)
+        return NotImplemented
+            
+            
     def norm(self):
         return (sum(val**2 for val in vars(self).values()))**0.5
         
@@ -38,7 +48,19 @@ class R3Vector(R2Vector):
 
 v1 = R2Vector(x=2, y=3)
 
-v2 = R3Vector(x=2, y=2, z=3)
+v2 = R2Vector(x=0.5,y=1.25)
+# v2 = R3Vector(x=2, y=2, z=3)
 
 print(f'v1 = {v1}')
 print(f'v2 = {v2}')
+v3 = v1 + v2
+# v3 = v1 + '(1, 2)' # -> TypeError
+print(f'v1 + v2 = {v3}')
+v4 = v1 - v2
+print(f'v1 - v2 = {v4}')
+
+v5 = v1 * 3
+v6 = v1 * v2  
+print(f'v1 * 3 = {v5}')
+print(f'v1 * v2 = {v6}')
+# v5 = v1 * '(1, 3)'  # -> TypeError
