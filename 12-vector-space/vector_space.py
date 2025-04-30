@@ -32,6 +32,11 @@ class R2Vector:
             args = [ getattr(self, i) * getattr(other,i) for i in vars(self)]
             return sum(args)
         return NotImplemented
+    
+    def __eq__(self, other):
+        if type(self) != type(other):
+            return NotImplemented
+        return all(getattr(self,i) == getattr(other,i) for i in vars(self))
             
             
     def norm(self):
