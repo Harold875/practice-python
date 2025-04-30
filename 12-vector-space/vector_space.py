@@ -51,6 +51,11 @@ class R2Vector:
             return NotImplemented
         return self.norm() > other.norm()  
     
+    def __le__(self, other):
+        return not self > other
+    
+    def __ge__(self, other):
+        return not self < other
      
     def norm(self):
         return (sum(val**2 for val in vars(self).values()))**0.5
@@ -86,3 +91,10 @@ print(f'v1 * v2 = {v6}')
 
 print(v1 == R2Vector(x=2, y=3))
 print(v1 != R2Vector(x=2, y=3))
+
+print('>', v1 > v2)
+print('<', v1 < v2)
+print('>=', v1 >= v2)
+print('>=', v1 >= v1)
+print('<=', v1 <= v2)
+print('<=', v1 <= v1)
