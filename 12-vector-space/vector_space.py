@@ -18,7 +18,11 @@ class R2Vector:
         kwargs = {i:getattr(self,i) + getattr(other,i) for i in vars(self)}
         return self.__class__(**kwargs)
     
-    
+    def __sub__(self, other):
+        if type(self) != type(other):
+            return NotImplemented
+        kwargs = {i:getattr(self,i) - getattr(other,i) for i in vars(self)}
+        return self.__class__(**kwargs)
     
     def norm(self):
         return (sum(val**2 for val in vars(self).values()))**0.5
