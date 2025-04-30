@@ -41,6 +41,16 @@ class R2Vector:
     def __ne__(self, other):
         return not self == other        
                   
+    def __lt__(self, other):
+        if type(self) != type(other):
+            return NotImplemented
+        return self.norm() < other.norm()
+    
+    def __gt__(self, other):
+        if type(self) != type(other):
+            return NotImplemented
+        return self.norm() > other.norm()  
+    
      
     def norm(self):
         return (sum(val**2 for val in vars(self).values()))**0.5
