@@ -82,42 +82,19 @@ class R3Vector(R2Vector):
 
         
 
-v1 = R2Vector(x=2, y=3)
-v2 = R2Vector(x=0.5,y=1.25)
-
-# v2 = R3Vector(x=2, y=2, z=3)
-
-print(f'v1 = {v1}')
-print(f'v2 = {v2}')
-v3 = v1 + v2
-print(f'v1 + v2 = {v3}')
-v4 = v1 - v2
-print(f'v1 - v2 = {v4}')
-v5 = v1 * 3
-v6 = v1 * v2  
-print(f'v1 * 3 = {v5}')
-print(f'v1 * v2 = {v6}')
-# v5 = v1 * '(1, 3)'  # -> TypeError
+if __name__ == '__main__':
+    # R2 Vector
+    v1 = R2Vector(x=2, y=3)
+    v2 = R2Vector(x=0.5,y=1.25)
+    print(f'v1 = {v1}')
+    print(f'v2 = {v2}')
+    print(f'v1 + v2 = {v1 + v2}')
+    print(v1 == v2)
 
 
-print(v1 == R2Vector(x=2, y=3))
-print(v1 != R2Vector(x=2, y=3))
-
-print('>', v1 > v2)
-print('<', v1 < v2)
-print('>=', v1 >= v2)
-print('>=', v1 >= v1)
-print('<=', v1 <= v2)
-print('<=', v1 <= v1)
-
-
-v1 = R3Vector(x=2, y=3, z=1)
-v2 = R3Vector(x=0.5,y=1.25, z= 2)
-v6 = v1.cross(v2)
-print(f'v1 x v2 = {v6}')
-
-# producto vectorial R3
-v11 = R3Vector(x=2,y=1,z=-3)
-v12 = R3Vector(x=4,y=-2,z=1)
-v13 = v11.cross(v12)
-print('r3',v13)
+    # R3 Vector
+    v11 = R3Vector(x=2, y=3, z=1)
+    v12 = R3Vector(x=0.5,y=1.25, z= 2)
+    v13 = v11.cross(v12)
+    print(f'v11 x v12 = {v13}')
+    print(f'v11 * v12 = {v11 * v12}')
