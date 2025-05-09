@@ -34,7 +34,7 @@ class Equation(ABC):
                 terms.append(f'{coefficient:+}x**{n}')        
         
         equation_string = " ".join(terms) + ' = 0'
-        return re.sub('(?<!\d)1(?=x)','', equation_string.strip('+'))
+        return re.sub(r'(?<!\d)1(?=x)','', equation_string.strip('+'))
         
     
     @abstractmethod
@@ -68,7 +68,16 @@ class QuadraticEquation(Equation):
         self.delta = b**2 - (4* a * c)
         
     def solve(self):
-        pass
+        if self.delta < 0:
+            return []
+        a, b, _ = self.coefficients.values()
+        x1 = (- b + (self.delta) ** 0.5) / (2 * a)
+        x2 = (- b - (self.delta) ** 0.5) / (2 * a)
+        if self.delta == 0:
+            return [x1]
+        
+        return [x1, x2]
+        
     
     def analyze(self):
         pass
@@ -78,5 +87,9 @@ class QuadraticEquation(Equation):
 lin_eq = LinearEquation(2, 3)
 # print(lin_eq)
 
-quadr_eq = QuadraticEquation(11,-1,1)
+quadr_eq = QuadraticEquation(-11,-1,1)
 print(quadr_eq)
+print(quadr_eq.solve())
+
+quadr_eq2 = QuadraticEquation(1,2,1)
+print(quadr_eq2.solve())
