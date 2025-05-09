@@ -80,16 +80,22 @@ class QuadraticEquation(Equation):
         
     
     def analyze(self):
-        pass
+        a, b, c = self.coefficients.values()
+        x = - b / (2 * a)
+        y = a * x**2 + b * x + c
+        concavity,min_max = ('upwards', 'min') if a > 0 else ('downwards','max')
+        
+        return {'x': x, 'y':y, 'min_max':min_max, 'concavity':concavity}
     
 
 
 lin_eq = LinearEquation(2, 3)
-# print(lin_eq)
-
-quadr_eq = QuadraticEquation(-11,-1,1)
-print(quadr_eq)
-print(quadr_eq.solve())
-
 quadr_eq2 = QuadraticEquation(1,2,1)
-print(quadr_eq2.solve())
+
+
+
+# print(lin_eq)
+# quadr_eq = QuadraticEquation(-11,-1,1)
+# print(quadr_eq)
+# print(quadr_eq.solve())
+# print(quadr_eq2.solve())
