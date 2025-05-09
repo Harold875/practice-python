@@ -46,7 +46,9 @@ class LinearEquation(Equation):
     degree = 1
     
     def solve(self):
-        pass
+        a, b = self.coefficients.values()
+        x = -b / a
+        return x
     
     def analyze(self):
         pass
@@ -55,3 +57,4 @@ class LinearEquation(Equation):
 
 lin_eq = LinearEquation(2, 3)
 print(lin_eq)
+print(lin_eq.solve())
