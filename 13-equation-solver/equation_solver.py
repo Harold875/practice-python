@@ -51,10 +51,12 @@ class LinearEquation(Equation):
         return x
     
     def analyze(self):
-        pass
+        slope, intercept = self.coefficients.values()
+        return {'slope': slope, 'intercept': intercept}
 
 
 
 lin_eq = LinearEquation(2, 3)
 print(lin_eq)
 print(lin_eq.solve())
+print(lin_eq.analyze())
