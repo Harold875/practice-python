@@ -51,7 +51,7 @@ class LinearEquation(Equation):
     def solve(self):
         a, b = self.coefficients.values()
         x = -b / a
-        return x
+        return [x]
     
     def analyze(self):
         slope, intercept = self.coefficients.values()
