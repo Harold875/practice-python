@@ -96,16 +96,46 @@ class QuadraticEquation(Equation):
 
 def solver(equation):
     if not isinstance(equation, Equation):
-        raise TypeError('Argument must be an Equation object') 
+        raise TypeError('Argument must be an Equation object')
+    
+    output_string = f'\n{equation.type:-^24}'
+    output_string += f'\n\n{equation!s:^24}\n\n'
+    output_string += f'{"Solutions":-^24}\n\n'
+    results = equation.solve()
+    match results:
+        case []:
+            result_list = ['No real roots']
+        case [x]:
+            result_list = [f'x = {x:+.3f}']
+        case [x1,x2]:
+            result_list = [f'x1 = {x1:+.3f}', f'x2 = {x2:+.3f}']     
+    
+    for result in result_list:
+        output_string += f'{result:^24}\n'
+        
+    output_string += f'\n{"Details":-^24}\n\n'
+    details = equation.analyze()
+    match details:
+        case {'slope': slope, 'intercept': intercept}:
+            details_list = [f'slope = {slope:>16.3f}', f'y-intercept = {intercept:>10.3f}']
+        case {'x': x, 'y':y, 'min_max':min_max, 'concavity':concavity}:
+            coord = f'({x:.3f}, {y:.3f})'
+            details_list = [f'concavity = {concavity:>12}', f'{min_max} = {coord:>18}']
+    
+    for detail in details_list:
+        output_string += f'{detail}\n'
+    
+    return output_string
 
 
 lin_eq = LinearEquation(2, 3)
 quadr_eq2 = QuadraticEquation(1,2,1)
 
-
+print(solver(lin_eq))
+print(solver(quadr_eq2))
 
 # print(lin_eq)
 # quadr_eq = QuadraticEquation(-11,-1,1)
-# print(quadr_eq)
+# print(solver(quadr_eq))
 # print(quadr_eq.solve())
 # print(quadr_eq2.solve())
