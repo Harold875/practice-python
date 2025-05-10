@@ -128,14 +128,9 @@ def solver(equation):
     return output_string
 
 
-lin_eq = LinearEquation(2, 3)
-quadr_eq2 = QuadraticEquation(1,2,1)
+if __name__ == '__main__':
+    lin_eq = LinearEquation(2, 3)
+    print(solver(lin_eq))
 
-print(solver(lin_eq))
-print(solver(quadr_eq2))
-
-# print(lin_eq)
-# quadr_eq = QuadraticEquation(-11,-1,1)
-# print(solver(quadr_eq))
-# print(quadr_eq.solve())
-# print(quadr_eq2.solve())
+    quadr_eq = QuadraticEquation(1,2,1)
+    print(solver(quadr_eq))
