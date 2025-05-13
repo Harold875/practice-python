@@ -47,9 +47,23 @@ class Projectile:
             for x in range(math.ceil(self.__calculate_displacement()))
         ]
     
+    @property
+    def speed(self):
+        return self.__speed
+    
+    @property
+    def height(self):
+        return self.__height
+    
+    @property
+    def angle(self):
+        return round(math.degrees(self.__angle))
+
 
 # test 
 ball = Projectile(10, 3, 45)
 print(ball)
 coordinates = ball.calculate_all_coordinates()
+print(ball.speed)
+print(ball.angle)
 # displacement_of_ball = ball._Projectile__calculate_displacement() # 12.6173996009878
