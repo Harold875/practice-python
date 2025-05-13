@@ -30,8 +30,16 @@ class Projectile:
         sin = math.sin(self.__angle)
         d = v * cos * (v * sin + math.sqrt((v**2) * (sin**2) +  (2 * g * h))) / g
         return d
-        
+    
+    def __calculate_y_coordinate(self, x):
+        height_component = self.__height
+        angle_component = math.tan(self.__angle) * x
+        acceleration_component = GRAVITATIONAL_ACCELERATION * x**2 / (
+            2 * self.__speed**2 * math.cos(self.__angle)**2)
+        y_coordinate = height_component + angle_component - acceleration_component
 
+        return y_coordinate
+    
 
 # test 
 ball = Projectile(10, 3, 45)
