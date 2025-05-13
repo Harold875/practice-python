@@ -15,12 +15,12 @@ class Projectile:
         self.__angle = math.radians(angle)
     
     def __str__(self):
-        messaje = f'\n{self.__class__.__name__} details:\n'
-        messaje += f'speed: {self.__speed} m/s\n'
-        messaje += f'height: {self.__height} m\n'
-        messaje += f'angle: {math.degrees(self.__angle):.0f}°\n'
-        messaje += f'displacement: {self.__calculate_displacement():.1f} m\n'
-        return messaje
+        message = f'\n{self.__class__.__name__} details:\n'
+        message += f'speed: {self.speed} m/s\n'
+        message += f'height: {self.height} m\n'
+        message += f'angle: {self.angle}°\n'
+        message += f'displacement: {self.__calculate_displacement():.1f} m\n'
+        return message
         
     
     def __calculate_displacement(self):
