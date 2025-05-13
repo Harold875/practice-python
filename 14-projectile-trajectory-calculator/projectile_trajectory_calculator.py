@@ -59,6 +59,17 @@ class Projectile:
     def angle(self):
         return round(math.degrees(self.__angle))
 
+    @speed.setter
+    def speed(self, new_value):
+        self.__speed = new_value
+        
+    @height.setter
+    def height(self, new_value):
+        self.__height = new_value
+
+    @angle.setter
+    def angle(self, new_value):
+        self.__angle = math.radians(new_value)
 
 # test 
 ball = Projectile(10, 3, 45)
