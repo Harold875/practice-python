@@ -22,6 +22,8 @@ class Projectile:
         message += f'displacement: {self.__calculate_displacement():.1f} m\n'
         return message
         
+    def __repr__(self):
+        return f'{self.__class__.__name__}({self.speed}, {self.height}, {self.angle})'
     
     def __calculate_displacement(self):
         v = self.__speed
