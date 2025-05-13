@@ -7,7 +7,8 @@ y_axis_tick = "⊣"
 
 
 class Projectile:
-    __slots__ = ['__speed', '__height', '__angle']
+    __slots__ = ('__speed', '__height', '__angle')
+    
     def __init__(self,speed, height, angle ):
         self.__speed = speed
         self.__height = height
@@ -40,8 +41,15 @@ class Projectile:
 
         return y_coordinate
     
+    def calculate_all_coordinates(self):
+        return [
+            (x, self.__calculate_y_coordinate(x))
+            for x in range(math.ceil(self.__calculate_displacement()))
+        ]
+    
 
 # test 
 ball = Projectile(10, 3, 45)
 print(ball)
+coordinates = ball.calculate_all_coordinates()
 # displacement_of_ball = ball._Projectile__calculate_displacement() # 12.6173996009878
