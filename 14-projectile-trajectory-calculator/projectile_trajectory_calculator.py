@@ -109,20 +109,30 @@ class Graph:
         matrix_axes.append(" " + x_axis_tick * (len(matrix[0])))
 
         graph =  '\n'+ '\n'.join(matrix_axes) + '\n'
-
         
         return graph
 
 # test 
-ball = Projectile(10, 3, 45)
-print(ball)
-coordinates = ball.calculate_all_coordinates()
-print(ball.speed)
-print(ball.angle)
+# ball = Projectile(10, 3, 45)
+# print(ball)
+# coordinates = ball.calculate_all_coordinates()
+# print(ball.speed)
+# print(ball.angle)
 # displacement_of_ball = ball._Projectile__calculate_displacement() # 12.6173996009878
-graph = Graph(coordinates)
+# graph = Graph(coordinates)
 # print(graph.create_coordinates_table())
-print(graph.create_trajectory())
+# print(graph.create_trajectory())
 
 # for row in graph.create_trajectory():
 #     print(row)
+
+def projectile_helper(speed, height, angle):
+    ball = Projectile(speed, height, angle)
+    print(ball)
+    coordinates = ball.calculate_all_coordinates()
+    graph = Graph(coordinates)
+    print(graph.create_coordinates_table())
+    print(graph.create_trajectory())
+    
+projectile_helper(10,3,45)
+    
