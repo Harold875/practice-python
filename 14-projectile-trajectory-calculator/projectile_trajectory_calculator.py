@@ -9,7 +9,7 @@ y_axis_tick = "⊣"
 class Projectile:
     __slots__ = ('__speed', '__height', '__angle')
     
-    def __init__(self, speed, height, angle ):
+    def __init__(self, speed, height, angle):
         self.__speed = speed
         self.__height = height
         self.__angle = math.radians(angle)
@@ -108,23 +108,10 @@ class Graph:
         matrix_axes = [y_axis_tick + row for row in matrix]
         matrix_axes.append(" " + x_axis_tick * (len(matrix[0])))
 
-        graph =  '\n'+ '\n'.join(matrix_axes) + '\n'
+        graph = '\n' + '\n'.join(matrix_axes) + '\n'
         
         return graph
 
-# test 
-# ball = Projectile(10, 3, 45)
-# print(ball)
-# coordinates = ball.calculate_all_coordinates()
-# print(ball.speed)
-# print(ball.angle)
-# displacement_of_ball = ball._Projectile__calculate_displacement() # 12.6173996009878
-# graph = Graph(coordinates)
-# print(graph.create_coordinates_table())
-# print(graph.create_trajectory())
-
-# for row in graph.create_trajectory():
-#     print(row)
 
 def projectile_helper(speed, height, angle):
     ball = Projectile(speed, height, angle)
@@ -133,6 +120,6 @@ def projectile_helper(speed, height, angle):
     graph = Graph(coordinates)
     print(graph.create_coordinates_table())
     print(graph.create_trajectory())
-    
-projectile_helper(10,3,45)
-    
+
+
+projectile_helper(10, 3, 45)
